@@ -31,7 +31,7 @@ public class GamePanel extends JPanel implements Runnable {
 		newPaddles();
 		newBall();
 		score = new Score(GAME_WIDTH, GAME_HEIGHT);
-		this.setFocusable(true); // qué carajo hace esto?
+		this.setFocusable(true); 
 		this.addKeyListener(new AL());
 		this.setPreferredSize(SCREEN_SIZE);
 		
@@ -40,7 +40,7 @@ public class GamePanel extends JPanel implements Runnable {
 	}
 	
 	public void newBall() {
-		//random = new Random();
+		
 		ball = new Ball((GAME_WIDTH/2)-(BALL_DIAMETER/2),(GAME_HEIGHT/2)-(BALL_DIAMETER/2),BALL_DIAMETER,BALL_DIAMETER);
 	}
 	
@@ -48,20 +48,16 @@ public class GamePanel extends JPanel implements Runnable {
 		paddle1 = new Paddle(0, (GAME_HEIGHT/2)-(PADDLE_HEIGHT/2), PADDLE_WIDTH, PADDLE_HEIGHT, 1); 
 		paddle2 = new Paddle(GAME_WIDTH-PADDLE_WIDTH, (GAME_HEIGHT/2)-(PADDLE_HEIGHT/2), PADDLE_WIDTH, PADDLE_HEIGHT, 2);
 	}
-	 // qué tiene que ver la imagen? y de qué clase viene el draw method? Graphics2D? De ser así, no lo tendría que castear?
-	public void paint(Graphics g) {
+	
+	public void paintComponent(Graphics g) {
 		image = createImage(getWidth(),getHeight());
 		graphics = image.getGraphics();
 		draw(graphics);
 		g.drawImage(image,0,0,this);
-	}
-	
-	public void draw(Graphics g) {
 		paddle1.draw(g);
 		paddle2.draw(g);
 		ball.draw(g);
 		score.draw(g);
-		
 	}
 	
 	public void move() {
